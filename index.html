@@ -1,23 +1,696 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #f3f4f6;
+            --text-color: #1f2937;
+            --bg-color: #f8fafc;
+            --border-color: #cbd5e1;
+            --button-color: #2563eb;
+            --button-hover: #1d4ed8;
+            --highlight-bg: #eff6ff;
+            --highlight-border: #3b82f6;
+            --success-color: #059669;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            border-bottom: 4px solid var(--secondary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        h2 {
+            margin-top: 2.5em;
+            font-size: 1.6em;
+            padding-left: 15px;
+            border-left: 5px solid var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        h3 {
+            margin-top: 1.8em;
+            font-size: 1.25em;
+            color: var(--secondary-color);
+        }
+
+        p, li {
+            margin-bottom: 1.4em;
+            font-size: 1.05em;
+            color: #374151;
+            text-align: justify;
+        }
+
+        .nav-links {
+            background: var(--accent-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: var(--highlight-bg);
+            padding: 25px;
+            border-left: 6px solid var(--highlight-border);
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight ol, .highlight ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .highlight li {
+            margin-bottom: 0.8em;
+        }
+
+        table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 14px 16px;
+            text-align: left;
+        }
+
+        thead th {
+            background: var(--primary-color);
+            color: #ffffff;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody td {
+            color: #334155;
+        }
+
+        .form-section-title {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-top: 40px;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .form-container {
+            background: #fafafc;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="text"], 
+        .form-group select, 
+        .form-group input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #ffffff;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input[type="text"]:focus, 
+        .form-group select:focus, 
+        .form-group input[type="number"]:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .form-group .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .form-group .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 18px 0;
+            background: var(--button-color);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 1.15em;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--button-hover);
+        }
+
+        .results-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .results-box h4 {
+            color: var(--success-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .external-link {
+            display: block;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f1f5f9;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .external-link label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9em;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .external-link a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .external-link a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.85em;
+            color: #64748b;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .simulated-chart {
+            background: #fafafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .simulated-chart-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .chart-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-label {
+            width: 140px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background: #e2e8f0;
+            height: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-value {
+            width: 80px;
+            text-align: right;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 15px auto;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            table {
+                font-size: 0.85em;
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "초등인터넷강의 대표 브랜드의 월 평균 요금은 얼마인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2026년 기준 엘리하이, 밀크티, 아이스크림 홈런, 온리원, 웅진스마트올 등 주요 초등인터넷강의 브랜드의 12개월 약정 기준 월 평균 비용은 약 14만 원에서 15만 원대 수준이며, 24개월 약정 시에는 월 11만 원에서 12만 원대로 책정됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "초등인터넷강의 가입 시 제공되는 신규 혜택과 사은품은 어떤 것들이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "교육 기업들은 대부분 무료 체험 기간 제공과 함께 가입 상품권 증정, 전용 학습 패드 무상 지원 및 약정 할인 이벤트를 적극적으로 진행하고 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "초등인터넷강의의 주요 장점과 단점은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "장점으로는 전과목 자기주도학습이 가능하고 반복 수강이 가능하다는 점이며, 단점으로는 약정 중도 해지 시 기기 위약금 및 해지 금액 부담이 발생할 수 있어 가입 전 신중한 비교와 계산이 필요합니다."
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>2026년 초등인터넷강의 종합 가이드: 브랜드별 최적 요금 분석 및 맞춤형 선택 전략</h1>
+
+        <p>새로운 학기를 맞이하거나 자녀의 학업 역량을 강화하고자 할 때, 학부모들의 가장 뜨거운 관심사는 단연 효율적인 교육 환경 구축입니다. 특히 2026년 디지털 교과서 전면 도입 및 맞춤형 스마트 교육이 본격화되면서 <strong>초등인터넷강의</strong>의 중요성은 어느 때보다 강조되고 있습니다. 자녀에게 알맞은 강의 방식을 선택하는 것은 자기주도학습 습관을 조기에 정착시키는 열쇠가 됩니다. 본 가이드에서는 학부모들이 빈번하게 검색하는 브랜드별 장단점과 요금 구조를 객관적으로 분석하며, 현명한 투자를 돕기 위해 실질적인 비용 절약 팁을 제시합니다.</p>
+
+        <div class="nav-links">
+            <a href="#market">2026 스마트 교육 트렌드</a>
+            <a href="#comparison">주요 브랜드 비교분석</a>
+            <a href="#proscons">온라인 학습의 장단점</a>
+            <a href="#regions">전국 지역별 활용 현황</a>
+            <a href="#discount">요금 할인 및 사은품 혜택</a>
+            <a href="#diagnosis">스마트 요금 자가 계산기</a>
+        </div>
+
+        <h2 id="market">2026년 초등 온라인 교육 동향 및 AI 학습의 부상</h2>
+        <p>최근 초등 교육 시장은 단순한 지식 전달 위주의 인터넷 교육 방식에서 벗어나, 빅데이터와 결합한 스마트 인공지능 지도로 빠르게 진화하고 있습니다. 과거에는 교재와 동영상 강의를 단순 시청하는 구조였다면, 2026년 현재의 교육 흐름은 자녀의 취약한 단원을 실시간으로 진단하고 맞춤형 문제를 제공하는 수준에 도달했습니다. 네이버 검색이나 구글 서칭을 통해 정보를 접하시는 많은 학부모들 역시 이러한 디지털 학습의 진화에 깊은 관심을 보이고 있습니다.</p>
+        
+        <p>특히 유튜브, 트위터, 인스타그램, 페이스북 같은 소셜 네트워크 서비스에서는 최첨단 <strong>AI</strong> 알고리즘과 거대언어모델인 <strong>제미나이</strong>나 <strong>챗지피티</strong>를 교육 도구로 접목해 실시간 피드백을 제공하는 서비스들이 이목을 끌고 있습니다. 이러한 기술은 아이들의 학습 집중력 유지에 기여하며 학습 패턴을 과학적으로 분석하여 스스로 공부할 수 있는 습관을 정립해 줍니다.</p>
+
+        <h2 id="comparison">초등인터넷강의 대표 브랜드 특징 및 요금 상세 비교</h2>
+        <p>현재 시장에서 점유율 상위를 기록하고 있는 대표적인 브랜드로는 메가스터디교육의 엘리하이, 천재교과서의 밀크티, 아이스크림에듀의 아이스크림 홈런, 비상교육의 온리원, 그리고 웅진씽크빅의 웅진스마트올을 꼽을 수 있습니다. 이들 브랜드는 저마다 독자적인 교육 철학과 강점을 보유하고 있으며, 월 할부 방식으로 청구되는 비용과 약정 조건에서 차이점을 보입니다.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>브랜드명</th>
+                    <th>주요 교육 대상 및 특징</th>
+                    <th>12개월 약정 요금 (월 평균)</th>
+                    <th>24개월 약정 요금 (월 평균)</th>
+                    <th>주요 특화 영역 및 콘텐츠</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>엘리하이</td>
+                    <td>초등 전학년, 상위권 및 심화 학습 중심</td>
+                    <td>약 139,900원</td>
+                    <td>약 113,900원</td>
+                    <td>영재원 대비, 특목고 연계, 심화 수학 및 영어도서관</td>
+                </tr>
+                <tr>
+                    <td>밀크티</td>
+                    <td>7세부터 13세, 전과목 교과 연계 강화</td>
+                    <td>약 149,000원</td>
+                    <td>약 119,000원</td>
+                    <td>천재교과서 기반 멀티미디어, 스토리텔링 연산 학습</td>
+                </tr>
+                <tr>
+                    <td>아이스크림 홈런</td>
+                    <td>초등 전학년, 학교 교과서 100% 밀착 연계</td>
+                    <td>약 144,000원</td>
+                    <td>약 114,000원</td>
+                    <td>학교 수업 예복습 최적화, 보상 시스템(홈런 콘) 활성화</td>
+                </tr>
+                <tr>
+                    <td>온리원</td>
+                    <td>초등 전학년, 자기주도적 마인드맵 학습</td>
+                    <td>약 149,000원</td>
+                    <td>약 119,000원</td>
+                    <td>개뼈노트 특허 콘텐츠, 메타인지 향상 훈련 프로그램</td>
+                </tr>
+                <tr>
+                    <td>웅진스마트올</td>
+                    <td>유아 및 초등 전학년, 독서와 전과목 결합</td>
+                    <td>약 139,000원</td>
+                    <td>약 109,000원</td>
+                    <td>웅진 북클럽 연동 방대한 도서 콘텐츠, AI 학습지 케어</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="simulated-chart">
+            <div class="simulated-chart-title">2026년 기준 브랜드별 약정 기간에 따른 월 평균 비용 추이</div>
+            <div class="chart-bar-container">
+                <div class="chart-row">
+                    <span class="chart-label">엘리하이 (24개월)</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-fill" style="width: 76%;"></div>
+                    </div>
+                    <span class="chart-value">113,900원</span>
+                </div>
+                <div class="chart-row">
+                    <span class="chart-label">밀크티 (24개월)</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-fill" style="width: 80%;"></div>
+                    </div>
+                    <span class="chart-value">119,000원</span>
+                </div>
+                <div class="chart-row">
+                    <span class="chart-label">아이스크림 홈런 (24)</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-fill" style="width: 77%;"></div>
+                    </div>
+                    <span class="chart-value">114,000원</span>
+                </div>
+                <div class="chart-row">
+                    <span class="chart-label">웅진스마트올 (24)</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar-fill" style="width: 73%;"></div>
+                    </div>
+                    <span class="chart-value">109,000원</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="proscons">초등인터넷강의 도입의 명확한 장단점 분석</h2>
+        <p>인터넷 강의 솔루션을 도입할 때 학부모님들은 장점과 단점을 철저하게 검토해야 합니다. 단순히 유행을 따르거나 저렴한곳만을 고집하다 보면, 아이의 학습 성향과 맞지 않아 위약금을 감수하고 중도 해지하게 되는 안타까운 상황이 발생하기 쉽습니다. 실제로 온라인 커뮤니티인 디시, 보배드림, 펨코, 에펨코리아의 학부모 게시판에는 기기 대금 연동으로 인한 해약 관련 고충이나 내돈내산 장기 이용 후기가 다수 등록되어 조언을 구하는 모습을 흔히 볼 수 있습니다.</p>
+
+        <h3>체계적인 스마트 교육의 장점</h3>
+        <p>가장 뚜렷한 장점은 역시 자기주도학습 능력을 체계적으로 배양해 줄 수 있다는 점입니다. 매일 정해진 학습 분량이 스마트 패드로 주어지고, 이를 완수했을 때 게임의 퀘스트를 완료하듯 성취감을 느낄 수 있는 동기부여 프로그램이 내장되어 있습니다. 또한 시간과 공간에 구애받지 않고 언제 어디서든 양질의 지식을 무한 반복 학습할 수 있습니다. 국어, 영어, 수학은 물론이고 사회, 과학 전과목의 개념을 다이렉트로 수강할 수 있어, 오프라인 종합 학원을 여러 개 보내는 것에 비하면 사교육비를 월등히 줄이는 효과를 가져옵니다.</p>
+
+        <h3>사전에 인지해야 할 잠재적 단점</h3>
+        <p>반면 자기 통제력이 아직 미흡한 초등 1학년, 초등 2학년, 초등 3학년 등 저학년 자녀의 경우, 패드를 단순한 놀이 기기나 게임 도구로 오인하여 집중력이 흐트러지는 부작용이 생길 수 있습니다. 이를 방지하기 위해서는 주기적인 유선 관리 및 학습 관리 교사의 밀착 상담과 교육 컨설팅 프로그램이 뒷받침되는지 체크해야 합니다. 또한, 스마트러닝 서비스는 대개 12개월 혹은 24개월 단위의 장기 약정을 맺기 때문에 중도에 해약하는 경우 그동안 할인받았던 금액이나 전용 태블릿 기기 대금이 잔존 금액으로 청구될 수 있다는 점을 명확히 알아두어야 합니다.</p>
+
+        <h2 id="regions">전국 시도별 초등 스마트 학습 현황</h2>
+        <p>온라인 교육의 또 다른 큰 이점은 물리적인 위치에 상관없이 평등한 고품질 콘텐츠를 수강할 수 있다는 사실입니다. 서울, 경기, 인천 등의 수도권 대치동 학원가와 비교해 학원 접근성이 떨어지는 부산, 대구, 광주, 대전, 울산, 세종 지역에서도 균일한 질적 교육을 적용받을 수 있습니다. 교육의 혜택이 미치기 어려운 강원, 충북, 충남, 전북, 전남 등의 지방 도시는 물론이고 경북, 경남, 그리고 제주에 이르기까지 전국의 도서 산간 지역에서도 많은 학부모들이 아이들의 기초 학력 다지기를 목적으로 다이렉트 온라인 가입을 진행하여 효과적인 학업 성취도를 이끌어내고 있습니다.</p>
+
+        <h2 id="discount">가입 시 챙겨야 할 현명한 비용 절약 팁 및 가이드</h2>
+        <p>매월 고정적으로 지출되는 자녀 교육 요금에 부담을 느끼신다면, 아래와 같은 전문적인 비용 경감 방식을 도입하여 가계 재정의 건전성을 제고해 볼 것을 권장합니다.</p>
+
+        <div class="highlight">
+            <ol>
+                <li><strong>다이렉트 본사 무료체험 프로그램 활용:</strong> 각 브랜드 공식 사이트에서는 최소 7일에서 최대 10일까지 스마트 패드와 정규 콘텐츠를 무상으로 체험해 볼 수 있는 체험 기회를 수시로 열어두고 있습니다. 미리 아이에게 적용해 본 뒤 가입을 판단하는 것이 제일 안전합니다.</li>
+                <li><strong>제휴 신용카드 활용 및 청구 할인:</strong> 교육 업체별로 전용 제휴 신용카드를 발급받아 전월 실적 조건(예: 30만 원 이상)을 충족할 경우, 매달 청구되는 강의 비용에서 최소 1만 원에서 최대 2만 원이 넘는 금액을 절감할 수 있습니다.</li>
+                <li><strong>금융 플랫폼 연계 혜택 탐색:</strong> 모바일 뱅킹 앱인 토스 혜택 존이나 주요 금융사 연계 프로모션을 정기적으로 체크해 보면 캐시백이나 교육비 캐시 적립 혜택을 제공하기도 합니다.</li>
+                <li><strong>정부 지원 교육 바우처 연계:</strong> 저소득층 또는 다자녀 가구 등 특정 요건을 충족하는 가정의 경우 정부에서 제공하는 방과후 교육 지원금이나 교육 바우처 상품 이용이 가능하므로 가입 전에 적용 유무를 고객센터에 문의하십시오.</li>
+                <li><strong>비공식 사칭 마케팅 주의:</strong> 블로그나 쪽지, 단체 텔레그램 등을 통해 간혹 비공식적으로 과도한 현금지원이나 고가의 사은품을 약속하며 가입을 부추기는 경우가 있습니다. 이는 향후 먹튀 피해나 비정상적인 약정 책정의 피해로 이어질 수 있으므로, 반드시 공식 홈페이지 및 믿을 수 있는 총판 고객센터를 통하는 편이 안전합니다.</li>
+            </ol>
+        </div>
+
+        <h2 id="trust">신뢰할 수 있는 외부 교육 전문 포털 및 관련 법령 안내</h2>
+        <p>인터넷 강의 가입 및 소비자 권리를 수호하기 위해 유용한 정보를 제공하는 공식 외부 기관 사이트 목록입니다. 해당 기관들을 통해 공신력 있는 제도 변화 및 교과 가이드라인을 확인하실 수 있습니다.</p>
+        
+        <div class="external-link">
+            <label>1. 교육 정책 및 스마트 학습 트렌드 연구소</label>
+            <a href="https://netslessonc.koreahankang.com" target="_blank">온라인 교육 트렌드 및 학업 성취도 심층 분석 리포트</a>
+        </div>
+        <div class="external-link">
+            <label>2. EBS 초등 공식 홈페이지</label>
+            <a href="https://primary.ebs.co.kr" target="_blank">국가 공인 EBS 무상 인터넷 교과 강좌 수강 및 학사 일정 참고</a>
+        </div>
+        <div class="external-link">
+            <label>3. 대한민국 교육부 공식 웹사이트</label>
+            <a href="https://www.moe.go.kr" target="_blank">초등학교 교과과정 개정안 및 교육 정책 공식 발표자료</a>
+        </div>
+
+        <h2 id="diagnosis">스마트 자가 진단 및 브랜드별 매칭 요금 계산기</h2>
+        <p>자녀의 현재 연령대, 집중력 수준 및 교육에 가용한 월 예산을 직접 선택하여 본인의 필요에 가장 부합하는 최적의 인터넷 학습지 매칭 결과를 신속하게 시뮬레이션해 보시기 바랍니다. 이 과정을 통해 예상 지출액의 대략적인 윤곽을 가늠해 볼 수 있습니다.</p>
+
+        <div class="form-section-title">자녀 학습 성향 분석 및 맞춤 예산 정보 입력</div>
+
+        <div class="form-container">
+            <form id="calculator-form" onsubmit="calculatePlan(event)">
+                <div class="form-group">
+                    <label for="child-grade">1. 학습할 자녀의 현재 학년 및 연령 구간을 선택해 주세요.</label>
+                    <select id="child-grade" name="child_grade" required>
+                        <option value="">선택하십시오</option>
+                        <option value="low">초등 1학년 ~ 3학년 (저학년 학습 단계)</option>
+                        <option value="high">초등 4학년 ~ 6학년 (고학년 심화 단계)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>2. 현재 가장 보완이 필요하다고 판단되는 주요 학업 목표는 무엇입니까?</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="goal_1" name="learning_goal" value="habits" required>
+                            <label for="goal_1">스스로 매일 공부하는 자기주도학습 습관 정착</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="goal_2" name="learning_goal" value="school">
+                            <label for="goal_2">학교 교과 단원평가 대비 및 철저한 수행평가 준비</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="goal_3" name="learning_goal" value="advance">
+                            <label for="goal_3">영어 심화 학습 및 수학 경시/선행 위주 집중 코칭</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="parent-budget">3. 가계에서 감당하고자 하는 매월 적정 교육 예산 범위를 지정해 주세요.</label>
+                    <select id="parent-budget" name="parent_budget" required>
+                        <option value="">선택하십시오</option>
+                        <option value="under_11">월 11만 원 내외 (합리적인 가성비 선호)</option>
+                        <option value="around_14">월 14만 원 대 내외 (전용 패드 및 표준형 약정)</option>
+                        <option value="over_15">월 15만 원 이상 (심화 일대일 비대면 개별 케어)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="region-select">4. 현재 거주 중이신 지역을 선택해 주세요.</label>
+                    <select id="region-select" name="region_select" required>
+                        <option value="">지역 선택</option>
+                        <option value="seoul">서울특별시</option>
+                        <option value="gg_ic">경기도 / 인천광역시</option>
+                        <option value="big_city">부산 / 대구 / 광주 / 대전 / 울산 / 세종</option>
+                        <option value="rural">기타 지방 도 및 도서 지역 (강원, 충청, 전라, 경상, 제주)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone-number">5. 맞춤 학습 상담 가이드 결과를 수신할 연락처를 입력해 주세요.</label>
+                    <input type="text" id="phone-number" name="phone_number" placeholder="예: 010-1234-5678" required>
+                </div>
+
+                <button type="submit" class="cta-button">스마트 학습 모델 추천 및 모의 견적 요금 분석 확인하기</button>
+            </form>
+
+            <div id="results-display" class="results-box">
+                <h4 id="results-title">맞춤형 자가 분석 보고서</h4>
+                <p id="results-brand-recommendation"></p>
+                <p id="results-cost-estimate"></p>
+                <p id="results-strategy-guide"></p>
+                <p style="font-size: 0.9em; color: #64748b; margin-top: 15px;">※ 상기 진단 및 추천은 입력하신 성향과 예산을 토대로 2026년 평균 브랜드 지출 요금을 연산한 결과입니다. 정식 무료 체험을 신청하시면 더 면밀한 개별 가이드와 사은 상품권 이벤트를 받으실 수 있습니다.</p>
+            </div>
+        </div>
+
+        <script>
+            function calculatePlan(event) {
+                event.preventDefault();
+                
+                const grade = document.getElementById('child-grade').value;
+                const goal = document.querySelector('input[name="learning_goal"]:checked').value;
+                const budget = document.getElementById('parent-budget').value;
+                const region = document.getElementById('region-select').value;
+                const phone = document.getElementById('phone-number').value;
+
+                if (!grade || !goal || !budget || !region || !phone) {
+                    alert('모든 문항을 빈틈없이 기재하여 주십시오.');
+                    return;
+                }
+
+                let recommendedBrand = '';
+                let estimatedCost = '';
+                let strategyText = '';
+
+                if (grade === 'low') {
+                    if (goal === 'habits') {
+                        recommendedBrand = '아이스크림 홈런 및 밀크티';
+                        estimatedCost = '24개월 약정 시 월 약 114,000원 ~ 119,000원 예상';
+                        strategyText = '저학년 자녀의 경우, 화려한 애니메이션 학습 요소와 꾸준한 동기부여 보상 제도가 결합된 스마트 러닝 패키지가 적당합니다. 일대일 맞춤 관리가 강한 밀크티 또는 예복습 연계가 좋은 아이스크림 홈런을 통한 공부 습관 배양을 권해 드립니다.';
+                    } else if (goal === 'school') {
+                        recommendedBrand = '웅진스마트올 및 밀크티';
+                        estimatedCost = '24개월 약정 시 월 약 109,000원 ~ 119,000원 예상';
+                        strategyText = '교과 지식을 재미있게 이해하면서 교과서 집필진의 노하우가 녹아든 멀티미디어 교안 학습을 적극 추천합니다. 다양한 지면 보충 문제와 함께 활용하시면 학습 피드백을 한층 더 극대화할 수 있습니다.';
+                    } else {
+                        recommendedBrand = '엘리하이';
+                        estimatedCost = '24개월 약정 시 월 약 113,900원 예상';
+                        strategyText = '저학년 단계부터 경시대회, 영재 교육 및 탄탄한 영어 심화를 목표로 한다면 대치동 강사진의 깊이 있는 전문 지식을 탑재한 메가스터디교육의 초등 맞춤 콘텐츠가 최적의 선택안이 될 수 있습니다.';
+                    }
+                } else {
+                    if (goal === 'habits') {
+                        recommendedBrand = '온리원 및 아이스크림 홈런';
+                        estimatedCost = '24개월 약정 시 월 약 114,000원 ~ 119,000원 예상';
+                        strategyText = '고학년 시기에 올바른 메타인지 학습 체계를 형성하기 위해 자신이 아는 것과 모르는 것을 확실히 구분해 내는 개뼈노트 기법의 활용도가 높게 권장됩니다.';
+                    } else if (goal === 'school') {
+                        recommendedBrand = '아이스크림 홈런 및 엘리하이';
+                        estimatedCost = '24개월 약정 시 월 약 113,900원 ~ 114,000원 예상';
+                        strategyText = '초등 5학년, 6학년 과정의 갑작스러운 난이도 상승에 신속하게 적응할 수 있도록 교과 밀착 강좌 중심의 종합 강사진 라인업을 구성하는 것이 필수적입니다.';
+                    } else {
+                        recommendedBrand = '엘리하이 (프라임 종합반)';
+                        estimatedCost = '12개월 약정 기준 월 약 139,900원, 24개월 약정 기준 월 약 113,900원 예상';
+                        strategyText = '중학교 예비 과정 및 고난도 심화 선행 과정을 소화하기에 가장 전문화된 플랫폼입니다. 수준 높은 단원별 강사 선택 권한을 폭넓게 활용하시는 전략이 매우 주효합니다.';
+                    }
+                }
+
+                if (budget === 'under_11') {
+                    estimatedCost += ' (제휴 카드를 결합하여 월 최고 15,000원 이상 청구 할인을 추가로 반영할 수 있는 가장 알뜰한 대안입니다)';
+                } else if (budget === 'over_15') {
+                    estimatedCost += ' (전용 펜과 무선 전용 패드가 패키지에 고루 탑재되고 매주 일대일 일대다 화상 피드백 관리를 포함한 최상위권 특별 반배정 구조입니다)';
+                }
+
+                document.getElementById('results-brand-recommendation').innerHTML = '<strong>추천하는 자녀 맞춤 브랜드 조합:</strong> ' + recommendedBrand;
+                document.getElementById('results-cost-estimate').innerHTML = '<strong>예상 소요 월 교육비 요금:</strong> ' + estimatedCost;
+                document.getElementById('results-strategy-guide').innerHTML = '<strong>학업 성향 분석 가이드라인:</strong> ' + strategyText;
+                
+                document.getElementById('results-display').style.display = 'block';
+                document.getElementById('results-display').scrollIntoView({ behavior: 'smooth' });
+            }
+        </script>
+
+        <h2 id="faq">초등인터넷강의 관련 빈번한 질문과 답변</h2>
+        <p>인터넷 커뮤니티나 교육 정보 사이트에서 학부모들이 반복적으로 던지는 문의들을 정제하여 이해하기 쉽게 답변해 드립니다.</p>
+
+        <h3>Q1. 약정 가입 후 중간에 위약금 없이 그만둘 수 있는 방법은 정말 없나요?</h3>
+        <p>기본적으로 스마트 패드가 포함된 학습 계약은 단기 취소 및 체험 가능 기간(대체로 수령 후 7일에서 10일 전후) 내에 해지하는 경우에는 납부해야 할 부담금 없이 전액 처리가 가능합니다. 하지만 체험 기간을 초과하여 장기 계약이 발효된 상황이라면 중도 퇴출 시 잔여 기기 잔금 및 일시 일시 할인 혜택 반환 등의 정산 비용이 고지될 수 있으므로 각 브랜드 가입 약관이나 고객센터의 서면 조건 규정을 사전 확인해 보는 단계가 요구됩니다.</p>
+
+        <h3>Q2. 무료 체험 기기는 일반 패드와 어떻게 다르고, 체험 신청 시 반납 비용은 얼마인가요?</h3>
+        <p>체험 시 발송되는 교육 전용 단말기 기기들은 완충 패키지와 전용 펜슬, 키보드 독 케이스가 완전히 동봉된 완제품 세트로 배송됩니다. 체험을 마친 후 정회원 결제를 진행하지 않을 경우에는 수거 대행 계약된 지정 택배 기사를 통해 포장 및 무상 반환 회수가 다이렉트로 이루어지기 때문에 배송비나 여타 위반 수수료가 청구되지 않는 구조입니다.</p>
+
+        <h3>Q3. 소셜 채널이나 카페에서 약정 외 가입 사은품으로 주는 상품권은 정식 보상인가요?</h3>
+        <p>그렇습니다. 본사 공식 사이트 및 협약 제휴 대리점 등에서 대규모 새 학기 기념 이벤트를 집행할 시 백화점이나 대형 마트 상품권, 기기 수납 전용 가방, 학습 연동 모바일 기기 주변 액세서리 사은품을 마케팅 목적으로 증정합니다. 단, 비공식적인 수수료를 수반하며 불투명한 사적 보상을 제시하는 채널은 잠재적 금전 사고를 촉발할 우려가 높은 편이므로 사전에 조심스러운 탐색이 권고됩니다.</p>
+
+        <div class="footer-note">
+            본 가이드에 게재된 2026년 기준 교육용 단말기 요금 및 요금제 조건은 각 공급 업체의 정기 프로모션과 제휴 혜택 사양 변경에 의해 수시로 달라질 수 있습니다. 학부모님께서는 계약을 정식으로 인가하기 전에 반드시 해당 교육 브랜드 공식 웹사이트 및 정식 콜센터의 안내 요강을 종합 교차 검토하여 최종 서명을 마무리하시길 권고합니다.<br>
+            © 2026 Elementary Education Online Lecture Guide. All Rights Reserved.
+        </div>
+    </div>
+  
